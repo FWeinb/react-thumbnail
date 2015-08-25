@@ -1,6 +1,6 @@
 {
   "name": "react-thumbnail",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Create thumbnails of elements or websites",
   "main": "lib/index.js",
   "scripts": {
