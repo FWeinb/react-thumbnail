@@ -1,0 +1,46 @@
+{
+  "name": "react-thumbnail",
+  "version": "0.0.1",
+  "description": "Create thumbnails of elements or websites",
+  "main": "lib/index.js",
+  "scripts": {
+    "clean": "rimraf lib dist && npm run clean:example",
+    "clean:example": "rimraf example-dist",
+    "lint": "eslint src",
+    "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
+    "build:lib": "babel src --out-dir lib",
+    "build:umd": "webpack src/index.js dist/react-thumbnail.js --config webpack.config.development.js",
+    "build:umd:min": "webpack src/index.js dist/react-thumbnail.min.js --config webpack.config.production.js",
+    "build:example": "NODE_ENV='production' && mkdir -p example-dist/static && cd example && webpack index.js -p --devtool source-map && cp -a dist/ ../example-dist/static/ && cp index.html ../example-dist/",
+    "preversion": "npm run clean && npm run lint",
+    "version": "npm run build",
+    "prepublish": "npm run clean && npm run build",
+    "gh:example": "npm run clean:example && npm run build:example && cd example-dist && git init && git commit --allow-empty -m 'Update Example' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update example' && git push git@github.com:FWeinb/react-thumbnail gh-pages --force"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FWeinb/react-thumbnail"
+  },
+  "keywords": [
+    "react",
+    "thumbnail",
+    "element"
+  ],
+  "author": "Fabrice Weinberg <Fabrice@weinberg.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FWeinb/react-thumbnail/issues"
+  },
+  "homepage": "http://fweinb.github.io/react-thumbnail",
+  "devDependencies": {
+    "babel-core": "^5.8.22",
+    "babel-eslint": "^4.0.10",
+    "babel-loader": "^5.3.2",
+    "eslint": "^1.2.1",
+    "eslint-config-airbnb": "0.0.8",
+    "eslint-plugin-react": "^3.2.3",
+    "react": "^0.13.3",
+    "rimraf": "^2.4.2",
+    "webpack": "^1.11.0"
+  }
+}
