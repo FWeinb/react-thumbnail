@@ -4,18 +4,18 @@
   "description": "Create thumbnails of elements or websites",
   "main": "lib/index.js",
   "scripts": {
-    "clean": "rimraf lib dist && npm run clean:example",
+    "clean": "rimraf lib dist",
     "clean:example": "rimraf example-dist",
     "lint": "eslint src",
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "webpack src/index.js dist/react-thumbnail.js --config webpack.config.development.js",
-    "build:umd:min": "webpack src/index.js dist/react-thumbnail.min.js --config webpack.config.production.js",
+    "build:umd:min": "NODE_ENV=production && COMPRESS=1 && webpack src/index.js dist/react-thumbnail.min.js --config webpack.config.production.js",
     "build:example": "NODE_ENV='production' && mkdir -p example-dist/static && cd example && webpack index.js -p --devtool source-map && cp -a dist/ ../example-dist/static/ && cp index.html ../example-dist/",
     "preversion": "npm run clean && npm run lint",
     "version": "npm run build",
     "prepublish": "npm run clean && npm run build",
-    "gh:example": "npm run clean:example && npm run build:example && cd example-dist && git init && git commit --allow-empty -m 'Update Example' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update example' && git push git@github.com:FWeinb/react-thumbnail gh-pages --force"
+    "publish:example": "npm run clean:example && npm run build:example && cd example-dist && git init && git commit --allow-empty -m 'Update Example' && git checkout -b gh-pages && touch .nojekyll && git add . && git commit -am 'update example' && git push git@github.com:FWeinb/react-thumbnail gh-pages --force"
   },
   "repository": {
     "type": "git",
@@ -42,5 +42,14 @@
     "react": "^0.13.3",
     "rimraf": "^2.4.2",
     "webpack": "^1.11.0"
-  }
+  },
+  "npmName": "redux",
+  "npmFileMap": [
+    {
+      "basePath": "/dist/",
+      "files": [
+        "*.js"
+      ]
+    }
+  ]
 }
