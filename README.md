@@ -26,7 +26,7 @@ React.render(
 
 ## Examples
 
-See [examples](http://fweinb.github.io/react-thumbnail/) for more examples.
+You can find some more examples [here](http://fweinb.github.io/react-thumbnail/).
 
 ## License
 
