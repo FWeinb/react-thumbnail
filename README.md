@@ -5,7 +5,7 @@
 ## Install
 
 ```
-$ npm install react-thumbnail
+$ npm install react-thumbnail --save
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ React.render(
 
 ## Examples
 
-See [examples]() for more examples
+See [examples](http://fweinb.github.io/react-thumbnail/) for more examples.
 
 ## License
 
